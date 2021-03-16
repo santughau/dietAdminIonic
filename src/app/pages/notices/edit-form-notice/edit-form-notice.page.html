@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="notices"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Here !</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="danger ">
+      <ion-card-title class="text-center">Edit Notice Here !</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #noticeForm="ngForm">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+            <ion-item>
+              <ion-label position="floating" class="text-danger">Title </ion-label>
+              <ion-input name="notices_title" required="true" #notices_title="ngModel" [(ngModel)]="data.notices_title"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating" color="danger">Link</ion-label>
+              <ion-textarea name="notices_describe" required="true" #notices_describe="ngModel" [(ngModel)]="data.notices_describe" rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" [disabled]="noticeForm.invalid" (click)="addNotice(noticeForm)" color="primary"
+              expand="block">Update</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

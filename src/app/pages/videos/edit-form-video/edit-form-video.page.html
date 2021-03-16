@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="photo"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Here !</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form #videoForm="ngForm">
+  <ion-card>
+    <ion-card-header color="danger ">
+      <ion-card-title class="text-center">Edit Video Here !</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+            <ion-item>
+              <ion-label position="floating" class="text-danger">Title </ion-label>
+              <ion-input name="youtube_title" required="true" #youtube_title="ngModel" [(ngModel)]="data.youtube_title">
+              </ion-input>
+            </ion-item>
+            <div *ngIf="youtube_title.invalid && youtube_title.touched ">
+              <ion-text color="primary">
+                <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+              </ion-text>
+            </div>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating" color="danger">Link</ion-label>
+              <ion-input name="youtube_videoLink" required="true" #youtube_videoLink="ngModel" [(ngModel)]="data.youtube_videoLink">
+              </ion-input>
+            </ion-item>
+            <div *ngIf="youtube_videoLink.invalid && youtube_videoLink.touched ">
+              <ion-text color="primary">
+                <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+          <ion-button type="submit" [disabled]="videoForm.invalid" (click)="editVideo(videoForm)" color="primary"
+            expand="block">Update</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  </form>
+</ion-content>

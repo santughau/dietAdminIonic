@@ -1,0 +1,94 @@
+<ion-header [translucent]="true" sticky>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Videos</ion-title>
+  </ion-toolbar>
+
+
+
+</ion-header>
+
+<ion-content>
+  <ion-card   >
+    <ion-card-header color="danger ">
+      <ion-card-title class="text-center">Add Videos Here !</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #videoForm="ngForm">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+            <ion-item>
+              <ion-label position="floating" class="text-danger">Title </ion-label>
+              <ion-input name="youtube_title" required="true" #youtube_title="ngModel" [(ngModel)]="data.youtube_title">
+              </ion-input>
+            </ion-item>
+            <div *ngIf="youtube_title.invalid && youtube_title.touched ">
+              <ion-text color="primary">
+                <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+              </ion-text>
+            </div>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating" color="danger">Link</ion-label>
+              <ion-input name="youtube_videoLink" required="true" #youtube_videoLink="ngModel" [(ngModel)]="data.youtube_videoLink">
+              </ion-input>
+            </ion-item>
+            <div *ngIf="youtube_videoLink.invalid && youtube_videoLink.touched ">
+              <ion-text color="primary">
+                <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" [disabled]="videoForm.invalid" (click)="addDownload(videoForm)" color="primary"
+              expand="block">Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid >
+    <ion-row>
+      <ion-col>
+        <h4 class="text-center text-white bg-primary p-2">Recent Videos</h4>
+        <ion-list class="ion-no-padding ">        
+          <ion-item *ngFor="let item of datas | slice:0:1;" (click)="viewVideo(item.youtube_videoLink)" >
+            <ion-thumbnail slot="start" style="width:150px;height:75px;">
+              <img src="https://img.youtube.com/vi/{{item.youtube_videoLink}}/0.jpg" />
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.youtube_title}}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentActionSheet()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="danger">
+    <ion-title class="text-center">Click + Button for View , Edit , Delete</ion-title>
+  </ion-toolbar>
+</ion-footer>

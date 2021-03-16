@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="view-photo"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Full Images Here !</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div style="width: 100%;" *ngIf="image.gallery_imgLink">
+    <img src="https://drive.google.com/uc?export=view&id={{image.gallery_imgLink}}" />
+  </div>
+  <div>
+    <hr>
+
+    <h2 class="text-center text-white bg-primary">{{image.gallery_title}}</h2>
+  </div>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="danger">
+    <ion-title class="text-center">Click Back Arrow to Go Back</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="photo"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit All Images Stuff Here !</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar [(ngModel)]="term" showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let image of images |filter:term" (click)="editForm(image.gallery_id)">
+      <ion-thumbnail slot="start">
+        <img src="https://drive.google.com/uc?export=view&id={{image.gallery_imgLink}}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{image.gallery_title}}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="10px" (ionInfinite)="getData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

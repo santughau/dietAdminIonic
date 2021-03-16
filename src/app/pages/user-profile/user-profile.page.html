@@ -1,0 +1,47 @@
+<ion-header [translucent]="true" sticky>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Users ( Total User : {{totalUsers?.user}} )</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar [(ngModel)]="term" showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-select placeholder="तालुका  निवडा   " interface="popover" mode="ios" name="tal"
+          (ionChange)="OnTalukaChange($event)" required>
+          <ion-select-option value="{{item.id}}" *ngFor="let item of taluka">
+            {{item.name}} - {{item.id}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="6">
+        <ion-select placeholder="केंद्र निवडा " interface="popover" mode="ios" name="block"
+          (ionChange)="OnBlockChange($event)" required>
+          <ion-select-option value="{{items.blockId}}" *ngFor="let items of blocks ;">{{items.blockName}} -
+            {{items.blockId}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h2 class="bg-danger text-white text-center">Registered Users</h2>
+  <ion-list>
+    <ion-item *ngFor="let items of UserList |filter:term">
+      <ion-label>
+        <h2 class="text-danger">{{items.fullName}}</h2>
+        <h3>{{items.mobile}}</h3>
+          <h2 class="text-primary">{{items.school}}</h2>
+          <h3>{{items.password}}</h3>
+          <h3>{{items.email}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

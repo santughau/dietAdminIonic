@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="download"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View All downloaded Stuff Here !</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar [(ngModel)]="term" showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of data |filter:term" (click)="openBrowese(item.download_link)">
+      <ion-label>{{item.download_title}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-infinite-scroll threshold="10px" (ionInfinite)="getData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

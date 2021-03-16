@@ -1,0 +1,59 @@
+<ion-header [translucent]="true" sticky>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>School Lists</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar [(ngModel)]="term" showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-select placeholder="तालुका  निवडा   " interface="popover" mode="ios" name="tal"
+          (ionChange)="OnTalukaChange($event)" required>
+          <ion-select-option value="{{item.id}}" *ngFor="let item of taluka">
+            {{item.name}} - {{item.id}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="6">
+        <ion-select placeholder="केंद्र निवडा " interface="popover" mode="ios" name="block"
+          (ionChange)="OnBlockChange($event)" required>
+          <ion-select-option value="{{items.blockId}}" *ngFor="let items of blocks ;">{{items.blockName}} -
+            {{items.blockId}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h2 class="bg-danger text-white text-center">School Lists</h2>
+  <ion-list>
+    <ion-item-sliding *ngFor="let items of schoolList |filter:term">
+      <ion-item>
+        <ion-label>
+          <h2 class="text-danger">{{items.sname}}</h2>
+          <h3>{{items.udise}}</h3>
+
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="editSchool(items.id)">Edit</ion-item-option>
+        <ion-item-option (click)="deleteSchool(items.id)" color="danger">Delete</ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddSchool()" >
+      <ion-icon name="add">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header [translucent]="true" sticky>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Images</ion-title>
+  </ion-toolbar>
+
+
+
+</ion-header>
+
+<ion-content>
+  <form #galleryForm="ngForm">
+    <ion-card>
+      <ion-card-header color="danger ">
+        <ion-card-title class="text-center">Add Images Here !</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+
+              <ion-item>
+                <ion-label position="floating" class="text-danger">Title </ion-label>
+                <ion-input name="gallery_title" required="true" #gallery_title="ngModel"
+                  [(ngModel)]="data.gallery_title"></ion-input>
+              </ion-item>
+              <div *ngIf="gallery_title.invalid && gallery_title.touched ">
+                <ion-text color="primary">
+                  <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+                </ion-text>
+              </div>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating" color="danger">Link</ion-label>
+                <ion-input name="gallery_imgLink" required="true" #gallery_imgLink="ngModel"
+                  [(ngModel)]="data.gallery_imgLink"></ion-input>
+              </ion-item>
+              <div *ngIf="gallery_imgLink.invalid && gallery_imgLink.touched ">
+                <ion-text color="primary">
+                  <h4 style="padding-left: 20px">Please Add Link Here !</h4>
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" [disabled]="galleryForm.invalid" (click)="addDownload(galleryForm)"
+                color="primary" expand="block">Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </form>
+
+
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentActionSheet()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="danger">
+    <ion-title class="text-center">Click + Button for View , Edit , Delete</ion-title>
+  </ion-toolbar>
+</ion-footer>

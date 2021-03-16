@@ -1,0 +1,90 @@
+<ion-header [translucent]="true" sticky>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Download</ion-title>
+  </ion-toolbar>
+
+
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="danger ">
+      <ion-card-title class="text-center">Add Download Stuff Here !</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #downloadForm="ngForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+
+              <ion-item>
+                <ion-label position="floating" class="text-danger">Title </ion-label>
+                <ion-input name="download_title" required="true" #download_title="ngModel"
+                  [(ngModel)]="data.download_title"></ion-input>
+              </ion-item>
+              <div *ngIf="download_title.invalid && download_title.touched ">
+                <ion-text color="primary">
+                  <h4 style="padding-left: 20px">Please Add Title Here !</h4>
+                </ion-text>
+              </div>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating" color="danger">Link</ion-label>
+                <ion-input name="download_link" required="true" #download_link="ngModel"
+                  [(ngModel)]="data.download_link"></ion-input>
+              </ion-item>
+              <div *ngIf="download_link.invalid && download_link.touched ">
+                <ion-text color="primary">
+                  <h4 style="padding-left: 20px">Please Add Link Here !</h4>
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" [disabled]="downloadForm.invalid" (click)="addDownload(downloadForm)" color="primary"
+                expand="block">Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentActionSheet()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+  
+        <h4 class="text-center text-white bg-danger p-2">Recent Download</h4>
+        <ion-list>
+          <ion-item *ngFor="let item of datas | slice:0:2;">
+            <ion-label (click)="openBrowese(item.download_link)">{{item.download_title}}</ion-label>
+          </ion-item>
+          
+  
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="danger">
+    <ion-title class="text-center">Click + Button for View , Edit , Delete</ion-title>
+  </ion-toolbar>
+</ion-footer>

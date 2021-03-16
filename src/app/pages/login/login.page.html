@@ -1,0 +1,67 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>dd</ion-title>
+  </ion-toolbar>
+</ion-header>
+ -->
+<ion-card>
+  <ion-card-header color="danger ">
+    <ion-card-title class="text-center">BPEGM</ion-card-title>
+  </ion-card-header>
+</ion-card>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="d-flex justify-content-center">
+
+        <img src="assets/logo.jpg" width="50%" />
+      </ion-col>
+    </ion-row>
+    <ion-card>
+      <ion-card-header color="danger ">
+        <ion-card-title class="text-center">Please Provide Your Login Credentials</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form #loginForm="ngForm">
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating" class="text-danger">User Name</ion-label>
+                <ion-input type="email" placeholder="Email" name="email" #email="ngModel" [(ngModel)]="login.email" required email></ion-input>
+                
+                <div *ngIf="email.invalid && email.touched ">
+                  <ion-text color="danger text-center">
+                    <h4 style="padding-left: 20px; margin-top: 10px;">कृपया ई-मेल लिहावा</h4>
+                  </ion-text>
+                </div>
+              </ion-item>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating" color="danger">Password</ion-label>
+                <ion-input type="text" placeholder="Password" name="password" #password="ngModel" [(ngModel)]="login.password" required></ion-input>
+              <div *ngIf="password.invalid && password.touched ">
+                <ion-text color="danger text-center">
+                  <h4 style="padding-left: 20px; margin-top: 10px;">कृपया पासवर्ड लिहावा</h4>
+                </ion-text>
+              </div>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="goToHome()" [disabled]="loginForm.invalid" color="danger" expand="block">Login</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-grid>
+</ion-content>

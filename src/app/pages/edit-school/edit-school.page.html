@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="school-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit All downloaded Stuff Here !</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form #downloadForm="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="floating" class="text-danger">School Name </ion-label>
+            <ion-input name="schoolName" required="true" #schoolName="ngModel" [(ngModel)]="data.schoolName">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="schoolName.invalid && schoolName.touched ">
+            <ion-text color="primary">
+              <h4 style="padding-left: 20px">Please Add School Name Here !</h4>
+            </ion-text>
+          </div>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating" color="danger">Udise</ion-label>
+            <ion-input name="udise" required="true" #udise="ngModel" [(ngModel)]="data.udise">
+            </ion-input>
+          </ion-item>
+          <div *ngIf="udise.invalid && udise.touched ">
+            <ion-text color="primary">
+              <h4 style="padding-left: 20px">Please Add Link Here !</h4>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="floating" class="text-danger">Taluka Name </ion-label>
+            <ion-select placeholder="तालुका  निवडा   " interface="popover" mode="ios" name="tal" #tal="ngModel"
+              [(ngModel)]="data.talukaId" (ionChange)="OnTalukaChange($event)" required>
+              <ion-select-option value="{{item.id}}" *ngFor="let item of taluka">
+                {{item.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="tal.invalid && tal.touched ">
+            <ion-text color="primary">
+              <h4 style="padding-left: 20px">Please Add Taluka Here !</h4>
+            </ion-text>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="floating" class="text-danger">Block Name </ion-label>
+            <ion-select placeholder="केंद्र निवडा " interface="popover" mode="ios" name="block" #block="ngModel"
+              [(ngModel)]="data.blockId" required>
+              <ion-select-option value="{{items.blockId}}" *ngFor="let items of blocks ;">{{items.blockName}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="block.invalid && block.touched ">
+            <ion-text color="primary">
+              <h4 style="padding-left: 20px">Please Add Taluka Here !</h4>
+            </ion-text>
+          </div>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" [disabled]="downloadForm.invalid" (click)="updateSchool(downloadForm)"
+            color="primary" expand="block">Update</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
